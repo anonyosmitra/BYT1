@@ -23,13 +23,13 @@ class ItemCategoryTest(unittest.TestCase):
         self.assertEqual(self.category3.get_name(), 'Instrument')
 
     def test_set_name(self):
-        self.category1.set_name('TestName1')
-        self.category2.set_name('TestName2')
-        self.category3.set_name('TestName3')
+        self.assertTrue(self.category1.set_name('TestName1'))
+        self.assertFalse(self.category2.set_name(None))
+        self.assertFalse(self.category3.set_name(''))
 
         self.assertEqual(self.category1.get_name(), 'TestName1')
-        self.assertEqual(self.category2.get_name(), 'TestName2')
-        self.assertEqual(self.category3.get_name(), 'TestName3')
+        self.assertEqual(self.category2.get_name(), 'Part')
+        self.assertEqual(self.category3.get_name(), 'Instrument')
 
     def test_str(self):
         self.assertEqual(str(self.category1), 'Drone')
@@ -43,3 +43,11 @@ class ItemCategoryTest(unittest.TestCase):
         self.assertEqual(str(self.category1), 'TestName1')
         self.assertEqual(str(self.category2), 'TestName2')
         self.assertEqual(str(self.category3), 'TestName3')
+
+    def test_is_valid(self):
+        self.assertTrue(self.category1.is_valid())
+        self.assertTrue(self.category2.is_valid())
+        self.assertTrue(self.category3.is_valid())
+
+        self.assertFalse(ItemCategory(None).is_valid())
+        self.assertFalse(ItemCategory('').is_valid())

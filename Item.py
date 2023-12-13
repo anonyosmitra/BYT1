@@ -26,20 +26,40 @@ class Item:
     def get_category(self) -> ItemCategory:
         return self.__category
 
-    def set_name(self, name: str) -> None:
+    def set_name(self, name: str) -> bool:
+        if name is None or name == "":
+            return False
+
         self.__name = name
+        return True
 
-    def set_cost(self, cost: float) -> None:
+    def set_cost(self, cost: float) -> bool:
+        if cost <= 0:
+            return False
+
         self.__cost = cost
+        return True
 
-    def set_weight(self, weight: float) -> None:
+    def set_weight(self, weight: float) -> bool:
+        if weight <= 0:
+            return False
+
         self.__weight = weight
+        return True
 
-    def set_box(self, box: Box) -> None:
+    def set_box(self, box: Box) -> bool:
+        if not box.is_valid():
+            return False
+
         self.__box = box
+        return True
 
-    def set_category(self, category: ItemCategory) -> None:
+    def set_category(self, category: ItemCategory) -> bool:
+        if not category.is_valid():
+            return False
+
         self.__category = category
+        return True
 
     def __str__(self):
         return f"Name: {self.__name} of {str(self.__category)} category, Cost: {self.__cost}, Weight: {self.__weight}"
