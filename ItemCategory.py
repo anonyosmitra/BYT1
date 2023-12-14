@@ -11,7 +11,6 @@ class ItemCategory:
             raise Exception("Invalid Name")
 
         self.__name = name
-        return True
 
     def __str__(self) -> str:
         return self.__name
