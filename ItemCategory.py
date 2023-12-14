@@ -1,6 +1,7 @@
 class ItemCategory:
 
     def __init__(self, name: str) -> None:
+        self.__name = None
         self.set_name(name)
 
     def get_name(self) -> str:

@@ -1,9 +1,12 @@
 class Box:
-
     def __init__(self, width: float, length: float, height: float) -> None:
-        self.__width = width
-        self.__length = length
-        self.__height = height
+        self.__width = None
+        self.__length = None
+        self.__height = None
+
+        self.set_width(width)
+        self.set_length(length)
+        self.set_height(height)
 
     def get_width(self) -> float:
         return self.__width
@@ -14,26 +17,23 @@ class Box:
     def get_length(self) -> float:
         return self.__length
 
-    def set_width(self, width: float) -> bool:
+    def set_width(self, width: float) -> None:
         if width <= 0:
-            return False
+            raise ValueError("Width of the box parameters is invalid")
 
         self.__width = width
-        return True
 
-    def set_length(self, length: float) -> bool:
+    def set_length(self, length: float) -> None:
         if length <= 0:
-            return False
+            raise ValueError("Length of the box parameters is invalid")
 
         self.__length = length
-        return True
 
-    def set_height(self, height: float) -> bool:
+    def set_height(self, height: float) -> None:
         if height <= 0:
-            return False
+            raise ValueError("Height of the box parameters is invalid")
 
         self.__height = height
-        return True
 
     def volume(self) -> float:
         return self.__width * self.__length * self.__height

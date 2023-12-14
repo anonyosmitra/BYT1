@@ -54,36 +54,42 @@ class ItemTest(unittest.TestCase):
         self.assertEqual(self.item3.get_category().get_name(), "TestCat3")
 
     def test_set_name(self):
-        self.assertTrue(self.item1.set_name("1"))
-        self.assertFalse(self.item2.set_name(None))
-        self.assertFalse(self.item3.set_name(""))
+        self.item1.set_name("1")
+        with self.assertRaises(ValueError):
+            self.item2.set_name(None)
+        with self.assertRaises(ValueError):
+            self.item3.set_name("")
 
         self.assertEqual(self.item1.get_name(), "1")
         self.assertEqual(self.item2.get_name(), "test2")
         self.assertEqual(self.item3.get_name(), "test3")
 
     def test_set_cost(self):
-        self.assertTrue(self.item1.set_cost(111))
-        self.assertFalse(self.item2.set_cost(0))
-        self.assertFalse(self.item3.set_cost(-12))
+        self.item1.set_cost(111)
+        self.item2.set_cost(0)
+        with self.assertRaises(ValueError):
+            self.item3.set_cost(-12)
 
         self.assertEqual(self.item1.get_cost(), 111)
-        self.assertEqual(self.item2.get_cost(), 34.4)
+        self.assertEqual(self.item2.get_cost(), 0)
         self.assertEqual(self.item3.get_cost(), 1)
 
     def test_set_weight(self):
-        self.assertTrue(self.item1.set_weight(1.1))
-        self.assertFalse(self.item2.set_weight(0))
-        self.assertFalse(self.item3.set_weight(-3.3))
+        self.item1.set_weight(1.1)
+        self.item2.set_weight(0)
+        with self.assertRaises(ValueError):
+            self.item3.set_weight(-3.3)
 
         self.assertEqual(self.item1.get_weight(), 1.1)
-        self.assertEqual(self.item2.get_weight(), 33)
+        self.assertEqual(self.item2.get_weight(), 0)
         self.assertEqual(self.item3.get_weight(), 1)
 
     def test_set_box(self):
-        self.assertTrue(self.item1.set_box(Box(1, 1, 1)))
-        self.assertFalse(self.item2.set_box(Box(0, 0, 0)))
-        self.assertFalse(self.item3.set_box(Box(3, -3, 3)))
+        self.item1.set_box(Box(1, 1, 1))
+        with self.assertRaises(ValueError):
+            self.item2.set_box(Box(0, 0, 0))
+        with self.assertRaises(ValueError):
+            self.item3.set_box(Box(3, -3, 3))
 
         self.assertEqual(self.item1.get_box().get_width(), 1)
         self.assertEqual(self.item1.get_box().get_length(), 1)
@@ -98,9 +104,11 @@ class ItemTest(unittest.TestCase):
         self.assertEqual(self.item3.get_box().get_height(), 4)
 
     def test_set_category(self):
-        self.assertTrue(self.item1.set_category(ItemCategory('T1')))
-        self.assertFalse(self.item2.set_category(ItemCategory(None)))
-        self.assertFalse(self.item3.set_category(ItemCategory('')))
+        self.item1.set_category(ItemCategory('T1'))
+        with self.assertRaises(Exception):
+            self.item2.set_category(ItemCategory(None))
+        with self.assertRaises(Exception):
+            self.item3.set_category(ItemCategory(''))
 
         self.assertEqual(self.item1.get_category().get_name(), 'T1')
         self.assertEqual(self.item2.get_category().get_name(), 'TestCat2')

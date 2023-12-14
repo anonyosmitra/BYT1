@@ -26,40 +26,29 @@ class Item:
     def get_category(self) -> ItemCategory:
         return self.__category
 
-    def set_name(self, name: str) -> bool:
+    def set_name(self, name: str) -> None:
         if name is None or name == "":
-            return False
+            raise ValueError("Name cannot be empty")
 
         self.__name = name
-        return True
 
-    def set_cost(self, cost: float) -> bool:
-        if cost <= 0:
-            return False
+    def set_cost(self, cost: float) -> None:
+        if cost < 0:
+            raise ValueError("Cost cannot be negative")
 
         self.__cost = cost
-        return True
 
-    def set_weight(self, weight: float) -> bool:
-        if weight <= 0:
-            return False
+    def set_weight(self, weight: float) -> None:
+        if weight < 0:
+            raise ValueError("Weight cannot be negative")
 
         self.__weight = weight
-        return True
 
-    def set_box(self, box: Box) -> bool:
-        if not box.is_valid():
-            return False
-
+    def set_box(self, box: Box) -> None:
         self.__box = box
-        return True
 
-    def set_category(self, category: ItemCategory) -> bool:
-        if not category.is_valid():
-            return False
-
+    def set_category(self, category: ItemCategory) -> None:
         self.__category = category
-        return True
 
     def __str__(self):
         return f"Name: {self.__name} of {str(self.__category)} category, Cost: {self.__cost}, Weight: {self.__weight}"

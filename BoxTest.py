@@ -33,27 +33,30 @@ class BoxTest(unittest.TestCase):
         self.assertEqual(type(self.box3), Box)
 
     def test_set_width(self):
-        self.assertTrue(self.box1.set_width(1))
-        self.assertFalse(self.box2.set_width(-1))
-        self.assertTrue(self.box3.set_width(8))
+        self.box1.set_width(1)
+        with self.assertRaises(ValueError):
+            self.box2.set_width(-1)
+        self.box3.set_width(8)
 
         self.assertEqual(self.box1.get_width(), 1)
         self.assertEqual(self.box2.get_width(), 2)
         self.assertEqual(self.box3.get_width(), 8)
 
     def test_set_height(self):
-        self.assertTrue(self.box1.set_height(1))
-        self.assertFalse(self.box2.set_height(-1))
-        self.assertTrue(self.box3.set_height(8))
+        self.box1.set_height(1)
+        with self.assertRaises(ValueError):
+            self.box2.set_height(-1)
+        self.box3.set_height(8)
 
         self.assertEqual(self.box1.get_height(), 1)
         self.assertEqual(self.box2.get_height(), 3.66)
         self.assertEqual(self.box3.get_height(), 8)
 
     def test_set_length(self):
-        self.assertTrue(self.box1.set_length(1))
-        self.assertFalse(self.box2.set_length(-1))
-        self.assertTrue(self.box3.set_length(8))
+        self.box1.set_length(1)
+        with self.assertRaises(ValueError):
+            self.box2.set_length(-1)
+        self.box3.set_length(8)
 
         self.assertEqual(self.box1.get_length(), 1)
         self.assertEqual(self.box2.get_length(), 3)
