@@ -1,4 +1,17 @@
 class ItemCategory:
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name: str) -> None:
+        self.__name = None
+        self.set_name(name)
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def set_name(self, name: str) -> bool:
+        if name is None or name == "":
+            raise Exception("Invalid Name")
+
+        self.__name = name
+
+    def __str__(self) -> str:
+        return self.__name

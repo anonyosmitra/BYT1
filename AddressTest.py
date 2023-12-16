@@ -9,4 +9,5 @@ class AddressTest(unittest.TestCase):
         self.assertEqual(address.__str__(), "Koszykowa 86, 02-008, Warszawa, Polska, 225844500")
 
 
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()
